@@ -1,0 +1,56 @@
+services:
+
+  order-service:
+    build: ./mock_services/order-service
+    container_name: order-service
+    ports:
+      - "8001:8001"
+    environment:
+      - SERVICE_NAME=order-service
+      - SERVICE_A_PORT=8001
+      - RUSH_CHECK_INTERVAL_SECONDS=60
+      - RUSH_PROBABILITY=0.20
+      - RUSH_CPU_MIN=75.0
+      - RUSH_CPU_MAX=95.0
+      - NORMAL_CPU_MIN=10.0
+      - NORMAL_CPU_MAX=35.0
+
+  payment-service:
+    build: ./mock_services/payment-service
+    container_name: payment-service
+    ports:
+      - "8002:8002"
+    environment:
+      - SERVICE_NAME=payment-service
+      - SERVICE_B_PORT=8002
+      - BURST_CHECK_INTERVAL_SECONDS=60
+      - BURST_PROBABILITY=0.15
+      - BURST_ERROR_RATE=0.85
+      - NORMAL_ERROR_RATE=0.02
+
+  inventory-service:
+    build: ./mock_services/inventory-service
+    container_name: inventory-service
+    ports:
+      - "8003:8003"
+    environment:
+      - SERVICE_NAME=inventory-service
+      - SERVICE_C_PORT=8003
+      - BATCH_INTERVAL_SECONDS=45
+      - OVERLOAD_PROBABILITY=0.15
+      - NORMAL_CPU_MIN=50.0
+      - NORMAL_CPU_MAX=80.0
+      - OVERLOAD_CPU_MIN=90.0
+      - OVERLOAD_CPU_MAX=99.0
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - order-service
+      - payment-service
+      - inventory-service

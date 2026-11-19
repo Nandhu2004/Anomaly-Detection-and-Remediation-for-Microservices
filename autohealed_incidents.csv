@@ -1,0 +1,6 @@
+Incident ID,Service,Anomaly Type,Risk Level,Risk Score,Decision,Action Taken,Outcome,Created At,Recovery Time
+INC_20261012_091354_FFD7,order-service,cpu_spike,LOW,0.0,auto_heal,tier1_sighup,success,2026-10-12T03:43:54.912188+00:00,
+INC_20261012_091154_202E,inventory-service,cpu_overload,LOW,0.1092,auto_heal,tier1_sighup,success,2026-10-12T03:41:54.470316+00:00,
+INC_20261007_113211_A2E8,payment-service,error_burst,LOW,0.0,auto_heal,tier1_sighup,success,2026-10-07T06:02:11.033015+00:00,
+INC_20261007_000726_4EE9,payment-service,error_burst,LOW,0.0,auto_heal,tier1_sighup,success,2026-10-06T18:37:26.446087+00:00,
+INC_20261007_000052_767D,payment-service,error_burst,LOW,0.0,auto_heal,tier2_restart,success,2026-10-06T18:30:52.376657+00:00,
