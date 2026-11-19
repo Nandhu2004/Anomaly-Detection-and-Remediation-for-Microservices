@@ -1,5 +1,5 @@
 
-# Per-Service Anomaly Detection and Remediation Through Feedback Learning for Microservices
+# Per-Service Anomaly Detection and Remediation for Microservices
 
 ## Overview
 
